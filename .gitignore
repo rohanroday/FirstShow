@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# FIRSTSHOW: kept on this computer, not uploaded
+# raw Google Flow clips (large, still carry the Flow watermark)
+/videos/
+# investor film with sound (20 MB); the site uses public/demo.mp4
+/FIRSTSHOW_Demo.mp4
+# downloaded archives (e.g. the 10k website skill)
+*.zip
+# local Claude Code settings
+/.claude/
+
+# editors / OS
+.vscode/
+.idea/
+Thumbs.db

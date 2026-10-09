@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FIRSTSHOW
 
-## Getting Started
+**First Day. First Show. From Home.**
 
-First, run the development server:
+Concept landing page for FIRSTSHOW, a digital cinema ticket for watching new releases at home on release day, at a real showtime.
+
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For the faster production version:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Stack
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js](https://nextjs.org) (App Router) + TypeScript
+- Tailwind CSS
+- [Lenis](https://lenis.darkroom.engineering/) for smooth scrolling
+- [GSAP](https://gsap.com) + ScrollTrigger for simple fade-in animations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Where things are
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Path | What it is |
+|---|---|
+| `app/page.tsx` | All page sections and copy |
+| `app/components/BackgroundHero.tsx` | Full-screen background video (16:9 on wide screens, 9:16 on phones) |
+| `app/components/SiteHeader.tsx` | Top bar and phone menu |
+| `app/components/DemoShowcase.tsx` | Demo film player and clickable app preview |
+| `app/components/SmoothScroll.tsx` | Lenis smooth scrolling |
+| `app/components/PageAnimations.tsx` | GSAP fade-ins |
+| `app/components/WaitlistForm.tsx` | Sign-up form (preview only: does not send data yet) |
+| `public/hero/` | Background videos and section images |
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This is a concept preview. Films shown are fictional and the video is AI generated.
+- The sign-up form shows a thank-you message but does not store anything yet.
+- Raw source clips and the full investor film are kept locally and are not in this repo.
