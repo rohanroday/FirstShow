@@ -1,5 +1,6 @@
 import Image from "next/image";
 import DemoShowcase from "./components/DemoShowcase";
+import Logo from "./components/Logo";
 import PageAnimations from "./components/PageAnimations";
 import SiteHeader from "./components/SiteHeader";
 import BackgroundHero from "./components/BackgroundHero";
@@ -14,13 +15,14 @@ const PAINS = [
 const STEPS = [
   { n: "01", title: "Pick a new release", body: "See what opens this Friday, in the language you love." },
   { n: "02", title: "Book a showtime", body: "4 PM, 7:30 PM, 10:15 PM. Real show slots, like the cinema." },
-  { n: "03", title: "Get your ticket", body: "One ticket for the household, locked to the screen you choose." },
+  { n: "03", title: "Pick your quality", body: "720p, 1080p or 2K. One ticket covers the household, on one screen." },
   { n: "04", title: "Doors open", body: "The film starts at showtime. Popcorn is your department." },
 ];
 
 const COMPARE: [string, string, string][] = [
   ["When you watch", "Release day, at a showtime", "Weeks or months later"],
-  ["What you pay for", "One film, one show", "A monthly catalogue"],
+  ["What you pay for", "One show, from ₹299", "A monthly catalogue"],
+  ["Live events", "Cricket, concerts and more", "Rarely, and usually extra"],
   ["The feeling", "An event the family plans for", "Something on in the background"],
   ["Who earns", "Filmmaker, theatre partner, platform", "Mostly the platform"],
 ];
@@ -49,12 +51,68 @@ const SECURITY = [
 ];
 
 const FAQ = [
-  { q: "Is this legal?", a: "Yes. Every film on FIRSTSHOW is shown under a direct agreement with its rights holder. No agreement, no show." },
+  { q: "Is this legal?", a: "Yes. Every film and event on LIVE SHOW is streamed under a direct agreement with its rights holder. No agreement, no show." },
+  { q: "What is the difference between ₹299, ₹550 and ₹899?", a: "Picture quality. 720p is ₹299, 1080p is ₹550 and 2K is ₹899. Same film, same showtime, same household ticket." },
+  { q: "Can I watch cricket and concerts too?", a: "Yes. Matches, concerts and other live events stream live. You buy a ticket for the event, just like a film." },
   { q: "How many screens can one ticket use?", a: "One. Your ticket is locked to the screen you pick when you book, for that one show." },
   { q: "What if I start late?", a: "Like a cinema, the show has a start time. We plan a short grace window so a late start does not cost you the film." },
   { q: "What stops people from recording it?", a: "Every stream carries an invisible mark tied to the ticket that played it. A leaked copy points straight back to its source, and that account is closed." },
   { q: "Which films will be on it?", a: "We start with regional and independent releases that get too few screens. Bigger films follow as producers join." },
-  { q: "Is FIRSTSHOW live?", a: "Not yet. This is a concept preview. Save your seat and we will tell you before the first show." },
+  { q: "Is LIVE SHOW available now?", a: "Not yet. This is a concept preview. Save your seat and we will tell you before the first show." },
+];
+
+const PLANS = [
+  { q: "720p", name: "HD", price: "299", best: "phones and tablets" },
+  { q: "1080p", name: "Full HD", price: "550", best: "laptops and most TVs", featured: true },
+  { q: "2K", name: "Ultra sharp", price: "899", best: "big TVs and projectors" },
+];
+const PLAN_POINTS = ["One film, one showtime", "Your whole household", "Plays on one screen"];
+
+const EVENTS = [
+  {
+    title: "Cricket",
+    body: "Every ball, live. Buy a match ticket and watch from your sofa.",
+    icon: (
+      <>
+        <path d="M4 20 15 9l2 2L6 22H4z" />
+        <path d="m15 9 3-3 2 2-3 3" />
+        <circle cx="18" cy="18" r="2.5" />
+      </>
+    ),
+  },
+  {
+    title: "Music concerts",
+    body: "A front-row view of the biggest shows, wherever you are.",
+    icon: (
+      <>
+        <path d="M9 18V5l11-2v13" />
+        <circle cx="6" cy="18" r="3" />
+        <circle cx="17" cy="16" r="3" />
+      </>
+    ),
+  },
+  {
+    title: "Stand-up and theatre",
+    body: "Live comedy and stage shows, as they happen.",
+    icon: (
+      <>
+        <rect x="9" y="2" width="6" height="12" rx="3" />
+        <path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8" />
+      </>
+    ),
+  },
+  {
+    title: "And everything else",
+    body: "Premieres, festivals, award nights. If it is live, it is on LIVE SHOW.",
+    icon: <path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" />,
+  },
+];
+
+const CINEMA = [
+  { title: "Doors-open lobby", body: "Join before the show, watch the countdown, settle in." },
+  { title: "Theatre mode", body: "Lights-down view and cinema sound. No pop-ups, no distractions." },
+  { title: "Watch together", body: "Invite family in other cities to the same showtime." },
+  { title: "A real interval", body: "Just like the cinema. Popcorn break included." },
 ];
 
 export default function Home() {
@@ -114,6 +172,55 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Pricing */}
+        <section id="pricing" className="scroll-mt-20 px-5 py-28 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="mx-auto max-w-3xl text-center" data-anim>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-gold">Pricing</p>
+              <h2 className="mt-4 font-display text-5xl uppercase sm:text-6xl">One show. Your choice of picture.</h2>
+              <p className="mx-auto mt-4 max-w-[48ch] text-muted">
+                Pay per show, no subscription. Every ticket covers your whole household.
+              </p>
+            </div>
+            <div className="mt-14 grid gap-4 md:grid-cols-3" data-anim-stagger>
+              {PLANS.map((p) => (
+                <article
+                  key={p.q}
+                  className={`relative flex flex-col rounded-3xl border p-8 ${
+                    p.featured ? "border-gold/60 bg-gold-soft" : "border-line bg-surface"
+                  }`}
+                >
+                  {p.featured && (
+                    <span className="absolute right-6 top-6 rounded-full bg-gold px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-ink">
+                      Best for most TVs
+                    </span>
+                  )}
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{p.name}</p>
+                  <h3 className="mt-2 font-display text-6xl uppercase leading-none">{p.q}</h3>
+                  <p className="mt-6 flex items-baseline gap-1">
+                    <span className="font-display text-5xl text-gold">₹{p.price}</span>
+                    <span className="text-sm text-muted">/ show</span>
+                  </p>
+                  <p className="mt-2 text-sm text-muted">Best on {p.best}</p>
+                  <ul className="mt-6 space-y-2 border-t border-line pt-6 text-sm">
+                    {PLAN_POINTS.map((pt) => (
+                      <li key={pt} className="flex gap-2">
+                        <span className="text-gold" aria-hidden="true">
+                          ✓
+                        </span>
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="#join" className={`btn mt-8 ${p.featured ? "btn-gold" : "btn-ghost"}`}>
+                    Save your seat
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* The app */}
         <section id="demo" className="scroll-mt-20 px-5 py-28 sm:px-6">
           <div className="mx-auto mb-12 max-w-3xl text-center" data-anim>
@@ -125,14 +232,80 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Live events */}
+        <section id="live" className="scroll-mt-20 border-y border-line bg-surface/60 px-5 py-28 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-3xl" data-anim>
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-gold">
+                <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" /> Live
+              </p>
+              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] sm:text-6xl">
+                Not just movies. Everything live.
+              </h2>
+            </div>
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-anim-stagger>
+              {EVENTS.map((e) => (
+                <article key={e.title} className="rounded-3xl border border-line bg-ink p-7">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-9 w-9 text-gold"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    {e.icon}
+                  </svg>
+                  <h3 className="mt-5 font-display text-3xl uppercase leading-none">{e.title}</h3>
+                  <p className="mt-3 text-muted">{e.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Virtual cinema */}
+        <section id="cinema" className="scroll-mt-20 px-5 py-28 sm:px-6">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2 md:gap-16">
+            <div className="overflow-hidden rounded-3xl border border-line" data-anim>
+              <Image
+                src="/hero/hero-ending.jpg"
+                alt="A family watching a film on a big TV in a dark living room"
+                width={1920}
+                height={1080}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="aspect-[4/3] w-full object-cover"
+              />
+            </div>
+            <div>
+              <div data-anim>
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-gold">First time in the world</p>
+                <h2 className="mt-4 max-w-[14ch] font-display text-5xl uppercase leading-[0.95] sm:text-6xl">
+                  A virtual cinema hall, at home.
+                </h2>
+              </div>
+              <ul className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2" data-anim-stagger>
+                {CINEMA.map((c) => (
+                  <li key={c.title}>
+                    <h3 className="text-lg font-semibold">{c.title}</h3>
+                    <p className="mt-1 text-muted">{c.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Ticket vs OTT */}
         <section className="px-5 py-28 sm:px-6">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-center font-display text-5xl uppercase sm:text-6xl" data-anim>Not another subscription</h2>
-            <div className="mt-12 overflow-hidden rounded-2xl border border-line" data-anim role="table" aria-label="FIRSTSHOW ticket compared with a typical OTT subscription">
+            <div className="mt-12 overflow-hidden rounded-2xl border border-line" data-anim role="table" aria-label="LIVE SHOW ticket compared with a typical OTT subscription">
               <div role="row" className="grid grid-cols-[1fr_1.2fr_1.2fr] bg-surface-2 font-mono text-[11px] uppercase tracking-wider text-muted sm:text-xs">
                 <span role="columnheader" className="p-3 sm:p-4"><span className="sr-only">Topic</span></span>
-                <span role="columnheader" className="p-3 text-gold sm:p-4">FIRSTSHOW ticket</span>
+                <span role="columnheader" className="p-3 text-gold sm:p-4">LIVE SHOW ticket</span>
                 <span role="columnheader" className="p-3 sm:p-4">Typical OTT</span>
               </div>
               {COMPARE.map(([k, a, b]) => (
@@ -260,10 +433,7 @@ export default function Home() {
       <footer className="border-t border-line px-5 py-10 text-sm text-muted sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
           <span>
-            <span className="font-display text-lg uppercase tracking-wider text-cream">
-              First<span className="text-gold">show</span>
-            </span>{" "}
-            · First Day. First Show. From Home.
+            <Logo className="text-lg" /> · Watch release-day movies online. Live.
           </span>
           <span>Concept preview. Films shown are fictional. Video is AI generated. © 2026</span>
         </div>

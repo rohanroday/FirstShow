@@ -86,7 +86,7 @@ function AppPreview({ autoplay = true }) {
     <div className="absolute inset-0 flex flex-col">
       {/* App chrome */}
       <div className="flex items-center justify-between border-b border-white/10 bg-ink/80 px-4 py-2.5 text-[11px] sm:text-xs">
-        <span className="font-display text-base tracking-wider text-gold sm:text-lg">FIRSTSHOW</span>
+        <span className="flex items-center gap-1.5 font-display text-base tracking-wider sm:text-lg"><span className="h-1.5 w-1.5 rounded-full bg-red" />LIVE<span className="text-gold">SHOW</span></span>
         <span className="text-muted">Friday · Release day</span>
       </div>
 
@@ -157,7 +157,7 @@ function Screen({ index }: { index: number }) {
         <div className="flex flex-1 flex-col justify-center">
           <p className="font-display text-2xl sm:text-4xl">{film.title}</p>
           <p className="text-xs text-muted">{film.lang} · 2h 14m · U/A 13+</p>
-          <p className="mt-4 text-[10px] uppercase tracking-[0.2em] text-muted sm:text-xs">Pick a showtime</p>
+          <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-muted sm:mt-4 sm:text-xs">Pick a showtime</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {["4:00 PM", "7:30 PM", "10:15 PM"].map((t) => (
               <span
@@ -170,10 +170,23 @@ function Screen({ index }: { index: number }) {
               </span>
             ))}
           </div>
-          <p className="mt-4 text-sm">
-            Digital ticket <span className="font-semibold text-gold">₹299</span>
-            <span className="text-muted"> · whole household</span>
-          </p>
+          <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-muted sm:text-xs">Picture quality</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {[
+              ["720p", "₹299"],
+              ["1080p", "₹550"],
+              ["2K", "₹899"],
+            ].map(([q, p]) => (
+              <span
+                key={q}
+                className={`rounded-md border px-3 py-1.5 text-xs sm:text-sm ${
+                  q === "1080p" ? "border-gold bg-gold-soft text-gold" : "border-white/15 text-muted"
+                }`}
+              >
+                {q} · {p}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -183,7 +196,7 @@ function Screen({ index }: { index: number }) {
       <div className="mx-auto flex h-full max-w-sm flex-col justify-center gap-2 text-xs sm:text-sm">
         <p className="font-display text-2xl">Checkout</p>
         <Row k={film.title} v="7:30 PM show" />
-        <Row k="Digital ticket" v="₹299" />
+        <Row k="1080p ticket" v="₹550" />
         <Row k="Device" v="Living-room TV" />
         <div className="mt-3 rounded-md bg-gold py-2 text-center font-semibold text-ink">Paid via UPI ✓</div>
       </div>
@@ -196,7 +209,7 @@ function Screen({ index }: { index: number }) {
           <div className="flex-1 p-4 sm:p-5">
             <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">Admit one household</p>
             <p className="font-display text-2xl leading-none sm:text-3xl">{film.title}</p>
-            <p className="mt-2 text-xs text-zinc-600">Fri · 7:30 PM · Screen: Living-room TV</p>
+            <p className="mt-2 text-xs text-zinc-600">Fri · 7:30 PM · 1080p · Living-room TV</p>
             <p className="mt-3 text-xs font-semibold text-red">Doors open 7:15 PM</p>
           </div>
           <div className="flex w-24 items-center justify-center border-l-2 border-dashed border-zinc-300 sm:w-28">
@@ -213,7 +226,7 @@ function Screen({ index }: { index: number }) {
         <span className="live-dot h-1.5 w-1.5 rounded-full bg-white" /> Live show
       </span>
       <span className="absolute bottom-10 left-4 font-mono text-[9px] text-white/25">
-        FS·7F3A·TXN0192·19:31
+        LS·7F3A·TXN0192·19:31
       </span>
       <div className="absolute inset-x-4 bottom-4 h-1 rounded bg-white/15">
         <div className="h-full w-1/5 rounded bg-gold" />

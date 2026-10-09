@@ -1,8 +1,8 @@
-# FIRSTSHOW
+# LIVE SHOW
 
-**First Day. First Show. From Home.**
+**Watch release-day movies online. Live.**
 
-Concept landing page for FIRSTSHOW, a digital cinema ticket for watching new releases at home on release day, at a real showtime.
+Concept landing page for LIVE SHOW: buy a ticket to watch new films at home on release day, plus cricket, music concerts and other events, live. Tickets are ₹299 (720p), ₹550 (1080p) and ₹899 (2K) per show.
 
 ## Run it
 

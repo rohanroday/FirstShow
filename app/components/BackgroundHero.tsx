@@ -28,7 +28,7 @@ export default function BackgroundHero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-svh items-end overflow-hidden" aria-label="FIRSTSHOW">
+    <section className="relative flex min-h-svh items-end overflow-hidden" aria-label="LIVE SHOW">
       {/* Still frame shown until the video is playing, picked per screen shape */}
       <picture>
         <source media={TALL} srcSet="/hero/hero-bg-poster-mobile.jpg" />
@@ -51,19 +51,19 @@ export default function BackgroundHero() {
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-5 pb-8 pt-32 sm:px-6 sm:pb-20 md:pb-28" data-hero>
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold sm:text-xs">Digital cinema · Coming soon</p>
-        <h1 className="mt-3 max-w-[14ch] font-display text-[clamp(42px,9vw,128px)] sm:mt-4 uppercase leading-[0.92] [text-shadow:var(--tshadow)]">
-          First Day. First Show. <span className="text-gold">From Home.</span>
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold [text-shadow:var(--tshadow)] sm:text-xs">First time in history</p>
+        <h1 className="mt-3 max-w-[13ch] font-display text-[clamp(42px,9vw,128px)] sm:mt-4 uppercase leading-[0.92] [text-shadow:var(--tshadow)]">
+          Watch release‑day movies <span className="text-gold">online.</span>
         </h1>
         <p className="mt-4 max-w-[44ch] text-[15px] leading-snug text-cream/90 sm:mt-6 sm:text-lg sm:leading-normal [text-shadow:var(--tshadow)] sm:text-xl">
-          Buy a digital cinema ticket and watch new releases on release day, at a real showtime, on your own screen.
+          New films on the day they open, plus cricket, music concerts and more, live. Tickets from ₹299.
         </p>
         <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
           <a href="#join" className="btn btn-gold">
             Save your seat
           </a>
-          <a href="#demo" className="btn btn-ghost">
-            ▶ See the app
+          <a href="#pricing" className="btn btn-ghost">
+            See prices
           </a>
         </div>
       </div>

@@ -8,13 +8,13 @@ const body = Instrument_Sans({ variable: "--font-body", weight: ["400", "500", "
 const mono = IBM_Plex_Mono({ variable: "--font-plex-mono", weight: ["400", "500"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FIRSTSHOW · First Day. First Show. From Home.",
+  title: "LIVE SHOW · Watch release-day movies online",
   description:
-    "Buy a digital cinema ticket and watch new releases on release day, at a real showtime, on your own screen.",
+    "Watch new movies online on release day, plus cricket, music concerts and more, live. Tickets from ₹299.",
   // DEPLOY STEP: add metadataBase with the live URL so og:image and og:url become absolute.
   openGraph: {
-    title: "FIRSTSHOW · First Day. First Show. From Home.",
-    description: "Digital cinema tickets for new releases.",
+    title: "LIVE SHOW · Watch release-day movies online",
+    description: "Release-day movies, cricket and concerts, live. From ₹299.",
     images: ["/hero/hero-ending.jpg"],
   },
 };

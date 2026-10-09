@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 
 const LINKS = [
   { href: "#how", label: "How it works" },
-  { href: "#demo", label: "The app" },
-  { href: "#partners", label: "Partners" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#live", label: "Live events" },
+  { href: "#cinema", label: "Virtual cinema" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -15,7 +17,7 @@ export default function SiteHeader() {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    const onResize = () => window.innerWidth >= 768 && setOpen(false);
+    const onResize = () => window.innerWidth >= 1024 && setOpen(false);
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
     return () => {
@@ -27,11 +29,11 @@ export default function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink/75 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6" aria-label="Main">
-        <a href="#main" className="font-display text-2xl uppercase tracking-wider text-cream" onClick={() => setOpen(false)}>
-          First<span className="text-gold">show</span>
+        <a href="#main" aria-label="LIVE SHOW home" onClick={() => setOpen(false)}>
+          <Logo />
         </a>
 
-        <div className="hidden items-center gap-8 text-sm text-muted md:flex">
+        <div className="hidden items-center gap-7 text-sm text-muted lg:flex">
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} className="transition-colors hover:text-cream">
               {l.label}
@@ -45,7 +47,7 @@ export default function SiteHeader() {
           </a>
           <button
             type="button"
-            className="grid h-11 w-11 place-items-center rounded-full border border-line-strong md:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-line-strong lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -70,7 +72,7 @@ export default function SiteHeader() {
       {/* Phone menu */}
       <div
         id="mobile-menu"
-        className={`grid transition-[grid-template-rows] duration-300 ease-out md:hidden ${
+        className={`grid transition-[grid-template-rows] duration-300 ease-out lg:hidden ${
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
         inert={!open}
